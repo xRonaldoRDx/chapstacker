@@ -39,3 +39,31 @@ def get_volume_number(chapter_name):
         volume_number = match.group(1) 
         return int(volume_number) # Transforma "01" em "1"
     return None
+
+def user_volumename_organization(volumes):
+    volumes_base_name = input('Digite a base para os nomes dos volumes (digite "{#n}" onde deverão ficar o número do volume: ')
+
+    final_volumes_organization = {}
+    for volume, chapters in volumes.items():
+        new_volume_name = volumes_base_name.replace('{#n}', str(volume))
+        final_volumes_organization[new_volume_name] = chapters
+    
+    return final_volumes_organization
+
+def chapters_volume_identification(origin_chapters):
+    # --- Verifica o nome de cada pasta de capítulo em busca do número de volume e então a anexa num padrão chave(volume) e valor(capítulo)
+    volumes = {} 
+
+    # --- Verifica cada capítulo encontrado
+    for chapter_name in origin_chapters:
+        num_vol = get_volume_number(chapter_name)
+
+        if num_vol is not None:
+            # Se a a chave do volume não existir, é criada.
+            if num_vol not in volumes:
+                volumes[num_vol] = [] 
+
+            # Atribui o caítulo na chave certa
+            volumes[num_vol].append(chapter_name)
+
+    return volumes
