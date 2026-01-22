@@ -1,4 +1,5 @@
-# Este projeto utiliza apenas a Biblioteca Padrão do Python.
 # Recomendado: Python 3.10 ou superior.
 
-# Nenhuma dependência externa necessária.
+# Dependências Externas do Chapstacker
+customtkinter
+
